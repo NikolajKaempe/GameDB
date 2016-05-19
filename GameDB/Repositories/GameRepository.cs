@@ -25,7 +25,8 @@ namespace GameDB.Repositories
 
         public List<Game> GetAll()
         {
-            return db.Games.ToList();
+           List<Game> games = db.Games.ToList();
+            return games;
         }
 
         public void InsertOrUpdate(Game game)

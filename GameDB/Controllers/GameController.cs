@@ -29,7 +29,7 @@ namespace GameDB.Controllers
             if (ModelState.IsValid)
             {
                 gameRepo.InsertOrUpdate(game);
-                return View("CreatedGame");
+                return View("CreatedGame",game);
             }
             return View();
         }
@@ -57,6 +57,12 @@ namespace GameDB.Controllers
         {
             gameRepo.Delete(id);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            return View(gameRepo.Find(id));
         }
     }
 }
