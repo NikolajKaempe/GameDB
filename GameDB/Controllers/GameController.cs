@@ -10,11 +10,11 @@ namespace GameDB.Controllers
 {
     public class GameController : Controller
     {
-        GameRepository gameRepo = new GameRepository();
+        GameRepository GameRepo = new GameRepository();
 
         public ActionResult Index()
         {
-            return View(gameRepo.GetAll());
+            return View(GameRepo.GetAll());
         }
 
         [HttpGet]
@@ -24,12 +24,18 @@ namespace GameDB.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Game game)
+        public ActionResult Create(Game game, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
-                gameRepo.InsertOrUpdate(game);
-                return View("CreatedGame");
+                if (image != null)
+                {
+                    game.ImageMimeType = image.ContentType;
+                    game.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(game.ImageData, 0, image.ContentLength);
+                }
+                GameRepo.InsertOrUpdate(game);
+                return View("CreatedGame", game);
             }
             return View();
         }
@@ -38,25 +44,54 @@ namespace GameDB.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View(gameRepo.Find(id));
+            return View(GameRepo.Find(id));
         }
 
         [HttpPost]
-        public ActionResult Edit(Game game)
+        public ActionResult Edit(Game game, HttpPostedFileBase image)
         {
             if(ModelState.IsValid)
             {
-                gameRepo.InsertOrUpdate(game);
+                if(image != null)
+                {
+                    game.ImageMimeType = image.ContentType;
+                    game.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(game.ImageData, 0, image.ContentLength);
+                }
+                GameRepo.InsertOrUpdate(game);
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(game);
         }
 
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            gameRepo.Delete(id);
+            GameRepo.Delete(id);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            return View(GameRepo.Find(id));
+        }
+
+        public FileContentResult GetImage(int gameId)
+        {
+            Game game = GameRepo.Find(gameId);
+           
+            if (game != null)
+            {
+                Console.WriteLine(game.ImageData);
+                return File(game.ImageData, game.ImageMimeType);
+            }
+            else
+            {
+                Console.WriteLine("Hej");
+                return null;
+            }
+          
         }
     }
 }

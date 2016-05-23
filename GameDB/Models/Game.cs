@@ -8,12 +8,14 @@ namespace GameDB.Models
     public class Game
     {
         public int GameID { get; set; }
-        public String name { get; set; }
-        public double rating { get; set; }
-        public DateTime releaseDate { get; set; }
-        public String author { get; set; }
-        public String imagePath { get; set; }
-        public List<Platform> platformList { get; set; }
-        public List<Character> charList { get; set; }
+        public String Name { get; set; }
+        public double Rating { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        public String Author { get; set; }
+        public List<Platform> PlatformList { get; set; }
+        public List<Character> CharList { get; set; }
+
+        public String ImageMimeType { get; set; }
+        public byte[] ImageData { get; set; }
     }
 }

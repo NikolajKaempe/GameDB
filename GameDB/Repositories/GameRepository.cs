@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Collections;
+using System.Web.Mvc;
 
 namespace GameDB.Repositories
 {
@@ -25,6 +26,8 @@ namespace GameDB.Repositories
 
         public List<Game> GetAll()
         {
+
+
             return db.Games.ToList();
         }
 
@@ -40,5 +43,6 @@ namespace GameDB.Repositories
             }
             db.SaveChanges();
         }
+
     }
 }

@@ -1,10 +1,10 @@
 ﻿@model GameDB.Models.Game
 
 @{
-    ViewBag.Title = "CreatedGame";
+    ViewBag.Title = "Details";
 }
 
-<h2>CreatedGame</h2>
+<h2>Details</h2>
 
 <div>
     <h4>Game</h4>
@@ -51,6 +51,15 @@
         </dd>
 
     </dl>
+    <div>
+        @if (Model.ImageData != null)
+        {
+            <div class="pull-left" style="margin-right: 10px">
+                <img class="img-thumbnail" width="75" height="75"
+                     src="@Url.Action("GetImage","Game", new { Model.GameID })"/>
+            </div>
+        }
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.GameID }) |
