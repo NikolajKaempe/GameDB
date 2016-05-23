@@ -26,8 +26,6 @@ namespace GameDB.Repositories
 
         public List<Game> GetAll()
         {
-
-
             return db.Games.ToList();
         }
 

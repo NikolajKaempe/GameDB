@@ -36,6 +36,7 @@ namespace GameDB.Controllers
                 }
                 GameRepo.InsertOrUpdate(game);
                 return View("CreatedGame", game);
+
             }
             return View();
         }
