@@ -6,6 +6,32 @@
 
 <h2>Index</h2>
 
+<div class="container">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 dummyImageTest">
+            <div class="indexPlate">
+                <a href="@Url.Action("Details","Game",  new {id = item.GameID })"><img class="img-responsive" width="272" height="380" src='@Url.Action("GetImage","Game", new { item.GameID })'/></a>
+                <!--<img class="img-responsive" width="272" height="380" src='@Url.Action("GetImage","Game", new { item.GameID })' />-->
+                @Html.DisplayFor(modelItem => item.Name)
+                <br>
+                Rating:
+                @Html.DisplayFor(modelItem => item.Rating)
+                <br>
+                @Html.ActionLink("Details", "Details", new { id = item.GameID })
+            </div>
+        </div>
+    }
+</div>
+
+
+
+<br>
+<h2>More Index</h2>
+<br>
+<br>
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -29,29 +55,32 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rating)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReleaseDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImageMimeType)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.GameID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.GameID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.GameID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageMimeType)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.GameID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.GameID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.GameID })
+            </td>
+        </tr>
+    }
 
 </table>
+
+
