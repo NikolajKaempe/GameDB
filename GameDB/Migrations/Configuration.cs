@@ -8,7 +8,7 @@ namespace GameDB.Migrations
     internal sealed class Configuration : DbMigrationsConfiguration<GameDB.Models.ApplicationDbContext>
     {
         public Configuration()
-        {
+        { 
             AutomaticMigrationsEnabled = true;
         }
 
