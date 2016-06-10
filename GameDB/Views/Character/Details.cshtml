@@ -1,0 +1,45 @@
+﻿@model GameDB.Models.Character
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Character</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CharacterName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CharacterName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CharacterDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CharacterDescription)
+        </dd>
+
+    </dl>
+
+    <div>
+        @if (Model.ImageData != null)
+        {
+            <div class="pull-left" style="margin-right: 10px">
+                <img class="img-thumbnail" width="75" height="75"
+                     src="@Url.Action("GetImage","Character", new { Model.CharacterID })" />
+            </div>
+        }
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CharacterID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

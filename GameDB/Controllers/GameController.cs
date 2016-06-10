@@ -75,7 +75,9 @@ namespace GameDB.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
+            Session["parentId"] = id;
             return View(GameRepo.Find(id));
+            
         }
 
         public FileContentResult GetImage(int gameId)

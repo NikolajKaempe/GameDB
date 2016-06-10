@@ -63,5 +63,6 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.GameID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index")|
+    @Html.ActionLink("Add Character", "Create", "Character",new { id = Model.GameID },null)
 </p>
