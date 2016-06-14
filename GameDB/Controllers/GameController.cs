@@ -10,7 +10,17 @@ namespace GameDB.Controllers
 {
     public class GameController : Controller
     {
-        GameRepository GameRepo = new GameRepository();
+        GameRepository GameRepo;
+
+        public GameController()
+        {
+            GameRepo = new GameRepository();
+        }
+
+        public GameController(GameRepository GameRepo)
+        {
+            this.GameRepo = GameRepo;
+        }
 
         public ActionResult Index()
         {
